@@ -259,9 +259,12 @@ public class SpringApplication {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SpringApplication(ResourceLoader resourceLoader, Class<?>... primarySources) {
+		// 资源加载器
 		this.resourceLoader = resourceLoader;
+		//初始化bean不为空
 		Assert.notNull(primarySources, "PrimarySources must not be null");
 		this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
+		//推断web应用程序类型
 		this.webApplicationType = deduceWebApplicationType();
 		setInitializers((Collection) getSpringFactoriesInstances(
 				ApplicationContextInitializer.class));
